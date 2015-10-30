@@ -14,7 +14,7 @@ public class ExceptionExamples {
     }
 
     try {
-      thisIsAUnceckedException();
+      thisIsAUncheckedException();
     }
     catch (Exception e) {
       System.out.println(e.getMessage());
@@ -29,14 +29,14 @@ public class ExceptionExamples {
 
   }
   private static void thisACheckedException() throws Exception {
-    throw new Exception("This is a checked exception");
+    throw new Exception("This is a checked exception, use for recoverable errors.");
   }
 
-  private static void thisIsAUnceckedException () {
-    throw new RuntimeException("This is a unchecked runtime exception");
+  private static void thisIsAUncheckedException () {
+    throw new RuntimeException("This is a unchecked runtime exception, coding error, un-retry-able error");
   }
 
   private static void thisIsAThrowableNonException () {
-    throw new Error("Throwable non-exception error");
+    throw new Error("This is a Throwable non-exception error, should not catch");
   }
 }

@@ -14,7 +14,7 @@ import java.util.Comparator;
 public class ReadSortFile {
 
   public static void main(String[] args) {
-    List<String> lines = new ArrayList<String>();
+    List<String> lines = new ArrayList<>();
     //don't use filereader or filewriter in production, use ?
     try{
       BufferedReader br = new BufferedReader(new FileReader("sample10k.txt"));
@@ -23,7 +23,7 @@ public class ReadSortFile {
         lines.add(s);
       }
       Collections.sort(lines);
-      Collections.reverse(lines);
+      //Collections.reverse(lines);
       //Collections.sort(lines, new mycompare());
       BufferedWriter bw = new BufferedWriter(new FileWriter("sample10k_sorted.txt"));
       //FileOutputStream fos = new FileOutputStream("sample10k_sorted.txt");

@@ -18,24 +18,24 @@ public class CompositionInheritanceExample {
     System.out.println(a1.says);
     System.out.println(a1.f1.allFruit);
 
-
     Orange o1 = new Orange();
     System.out.println(o1.says);
     System.out.println(o1.allFruit);
     //o1.taste = "yum"; //private
     o1.allFruit = "good";
 
-    Fruit o2 = new Orange();
+    Fruit o2 = new Orange(); // polymorph
     System.out.println(o2.allFruit);
 
-    Fruit o3 = new Orange(5,3); // count, ounces
+    Fruit o3 = new Orange(5,3); // count, ounces // polymorph
     o3.aMethodToOverride();
 
-    int we = 2;
+    int a = 1;
+    int b = 2;
 
-    a1.eatTheFruit(1,a1,we);
-
-    System.out.println("we="+we+",a1.says="+a1.says);
+    System.out.println("eatTheFruit::before: a=" + a + ", b=" + b + ", a1.says=" + a1.says);
+    a1.eatTheFruit(1, a1, b);
+    System.out.println("eatTheFruit::after: a=" + a + ", b=" + b + ", a1.says=" + a1.says);
 
     // instance of
     List<Object> ob = new ArrayList<>();

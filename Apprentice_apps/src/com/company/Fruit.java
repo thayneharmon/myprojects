@@ -8,7 +8,7 @@ public class Fruit {
   private int count = 0;
   private String color = "";
   private int weightOunces = 0;
-  public String taste = "";
+  public String taste = ""; // breaks encapsulation, accessible outside to the world
 
 
   public Fruit() {}
@@ -31,6 +31,7 @@ public class Fruit {
   }
 
   public void aMethodToOverride(){
+
     System.out.println("This is me");
   }
 
