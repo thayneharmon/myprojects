@@ -10,6 +10,7 @@ public class Orange extends Fruit {
   Orange(int count, int weightOnces) {
     super(count, "Orange", weightOnces, "tart");
   }
+
   @Override
   public void aMethodToOverride() {
     System.out.println("I have been overridden");
