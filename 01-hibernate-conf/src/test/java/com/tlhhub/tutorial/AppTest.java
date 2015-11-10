@@ -1,11 +1,11 @@
 package com.tlhhub.tutorial;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 import com.tlhhub.tutorial.entity.AppUser;
 
@@ -15,16 +15,21 @@ import com.tlhhub.tutorial.entity.AppUser;
 public class AppTest 
     extends TestCase
 {
-    public void testApp() {
-        SessionFactory sessionFactory = new Configuration().configure()
-            .buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
+  public void testApp() {
+    Configuration configuration = new Configuration();
+    configuration.configure();
 
-        AppUser user = new AppUser("firstuser");
-        session.save(user);
+    ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+        configuration.getProperties()).build();
+    SessionFactory sessionFactory = new Configuration().configure("my_hibernate.cfg.xml")
+          .buildSessionFactory(serviceRegistry);
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
 
-        session.getTransaction().commit();
-        session.close();
-    }
+    AppUser user = new AppUser("firstuser");
+    session.save(user);
+
+    session.getTransaction().commit();
+    session.close();
+  }
 }
