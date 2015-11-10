@@ -12,7 +12,6 @@ public class Main {
     Random rand = new Random();
     List<char[]> list = new ArrayList<>();
       long count = 0;
-    char[] chars = new char[26];
 
     int mb = 1024 * 1024;
     Runtime runtime = Runtime.getRuntime();
@@ -24,12 +23,13 @@ public class Main {
 
     try {
       while (true) {
+        char[] chars = new char[26];
         for (int i = 0; i < 26; i++) {
           int j = rand.nextInt(26);  // 26 characters in the alphabet
           chars[i] = (char) (j + 65); // ASCII A
         }
         list.add(chars);
-          count++;
+        count++;
       }
     }
     catch (OutOfMemoryError ex) {

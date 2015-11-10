@@ -15,8 +15,7 @@ public class FileUtils {
       return new BufferedWriter(new FileWriter(fileName));
     }
     catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException("openFile:"+fileName,e);
     }
-    return null;
   }
 }

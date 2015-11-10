@@ -30,6 +30,8 @@ public class Fruit {
     this.taste = taste;
   }
 
+
+
   public void aMethodToOverride(){
 
     System.out.println("This is me");

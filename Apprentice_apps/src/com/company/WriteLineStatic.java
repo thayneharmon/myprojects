@@ -13,7 +13,7 @@ public class WriteLineStatic {
       bw.write("Hello world");
     }
     catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException("WriteLineStatic: " + "newfile.txt", e);
     }
   }
 }
