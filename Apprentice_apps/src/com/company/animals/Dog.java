@@ -6,7 +6,7 @@ package com.company.animals;
 public class Dog extends Animal {
   public Dog(String name, int beatsPerYear, long lifeSpan) { super(name, beatsPerYear, lifeSpan);}
 
-  public String say() {return "Hau, jau!";}
+  public String say() {return "Rauff, Rauff!";}
 
   @Override
   public String toString() {
