@@ -10,7 +10,7 @@ public class sub implements calc {
     int c =  a - b;
     Print p = new Print();
     System.out.println(a + " minus " + b);
-    p.sign(c);
+    p.printTotal(c);
     return c;
   }
 

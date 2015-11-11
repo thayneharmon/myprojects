@@ -8,7 +8,7 @@ public class add extends Print {
   public int doCalc(int a, int b) {
     int c =  a + b;
     System.out.println(a + " plus " + b);
-    sign(c);
+    printTotal(c);
     return c;
   }
 }

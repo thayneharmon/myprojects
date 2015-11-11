@@ -40,5 +40,12 @@ public class Main {
       System.out.println("Total Memory:" + runtime.totalMemory() / mb);
       System.out.println("Max Memory:" + runtime.maxMemory() / mb);
     }
+    finally {
+      System.out.println("Number of chars = " + (count * 26));
+      System.out.println("Used Memory:" + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+      System.out.println("Free Memory:" + runtime.freeMemory() / mb);
+      System.out.println("Total Memory:" + runtime.totalMemory() / mb);
+      System.out.println("Max Memory:" + runtime.maxMemory() / mb);
+    }
   }
 }
