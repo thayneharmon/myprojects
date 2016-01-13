@@ -11,10 +11,12 @@
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
       <param-value>com.example.rest</param-value>
+      <description>"something"</description>
     </init-param>
     <init-param>
       <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-      <param-value>true</param-value>
+      <param-value>com.example.Item</param-value>
+      <description>"something"</description>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

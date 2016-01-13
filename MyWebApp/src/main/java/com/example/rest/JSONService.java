@@ -2,7 +2,10 @@ package com.example.rest;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
@@ -16,6 +19,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.example.DBUtil;
 import com.example.Item;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -24,7 +28,14 @@ public class JSONService {
 
   final ObjectMapper mapper = new ObjectMapper();
   final static Map<String, Map<String, Item>> shoppingLists = new HashMap<String, Map<String, Item>>();
+  final DBUtil dbUtil = new DBUtil();
 
+  public JSONService () {
+    // read once
+    if (shoppingLists.size() == 0) {
+      dbUtil.serializeReadLists(shoppingLists);
+    }
+  }
   /**
    * list shopping lists
    * @return lists
@@ -54,6 +65,7 @@ public class JSONService {
 
     if (!shoppingLists.containsKey(newList)) {
       shoppingLists.put(newList, new HashMap<String, Item>());
+      dbUtil.serializeWriterLists(shoppingLists);
     }
 
     return Response.status(200).entity(mapper.writeValueAsString(shoppingLists)).build();
@@ -82,18 +94,83 @@ public class JSONService {
    * @throws IOException
    */
   @GET
-  @Path("/lists/{listName}/items/{item}")
+  @Path("/lists/{listName}/search")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response searchShoppingList(
       @PathParam("listName") String listName,
-      @PathParam("item") String item) throws IOException {
+      @QueryParam("item") String item,
+      @QueryParam("dateStart") Date dateStart,
+      @QueryParam("dateEnd") Date dateEnd,
+      @QueryParam("price") Double price,
+      @QueryParam("store") String store) throws IOException {
 
     List<Item> result = new ArrayList<Item>();
     Map<String, Item> listMap = shoppingLists.get(listName);
-    for (String name : listMap.keySet()) {
-      if (name.contains(item)) {
-        result.add(listMap.get(name));
+
+    if (item != null) {
+      for (String name : listMap.keySet()) {
+        if (name.contains(item)) {
+          result.add(listMap.get(name));
+        }
+      }
+    }
+    else {
+        result.addAll(listMap.values());
+    }
+
+    if (result.size() > 0) {
+
+      if (dateStart != null) {
+        for (Iterator<Item> itemIterator = result.iterator(); itemIterator.hasNext();) {
+          Item item_c = itemIterator.next();
+          Calendar item_calendar = Calendar.getInstance();
+          item_calendar.setTime(item_c.getDate());
+          int item_day = item_calendar.get(Calendar.DAY_OF_MONTH);
+
+          Calendar query_calendar = Calendar.getInstance();
+          query_calendar.setTime(dateStart);
+          int query_day = query_calendar.get(Calendar.DAY_OF_MONTH);
+
+          if (query_day > item_day) {
+            itemIterator.remove();
+          }
+        }
+      }
+
+      if (dateEnd != null) {
+        for (Iterator<Item> itemIterator = result.iterator(); itemIterator.hasNext();) {
+          Item item_c = itemIterator.next();
+          Calendar item_calendar = Calendar.getInstance();
+          item_calendar.setTime(item_c.getDate());
+          int item_day = item_calendar.get(Calendar.DAY_OF_MONTH);
+
+          Calendar query_calendar = Calendar.getInstance();
+          query_calendar.setTime(dateEnd);
+          int query_day = query_calendar.get(Calendar.DAY_OF_MONTH);
+
+          if (query_day <= item_day) {
+            itemIterator.remove();
+          }
+        }
+      }
+
+      if (price != null) {
+        for (Iterator<Item> itemIterator = result.iterator(); itemIterator.hasNext();) {
+          Item item_c = itemIterator.next();
+          if (item_c.getPrice() > price) {
+            itemIterator.remove();
+          }
+        }
+      }
+
+      if (store != null) {
+        for (Iterator<Item> itemIterator = result.iterator(); itemIterator.hasNext();) {
+          Item item_c = itemIterator.next();
+          if (!item_c.getStore().toLowerCase().contains(store.toLowerCase()) ) {
+            itemIterator.remove();
+          }
+        }
       }
     }
 
@@ -125,6 +202,7 @@ public class JSONService {
       store ="";
     }
     shoppingLists.get(listName).put(newItem, new Item(newItem, price, store));
+    dbUtil.serializeWriterLists(shoppingLists);
     return Response.status(200).entity(mapper.writeValueAsString(shoppingLists.get(listName))).build();
   }
 
@@ -144,6 +222,7 @@ public class JSONService {
       @PathParam("item") String item) throws IOException {
 
     shoppingLists.get(listName).remove(item);
+    dbUtil.serializeWriterLists(shoppingLists);
 
     return Response.status(200).entity(mapper.writeValueAsString(shoppingLists.get(listName))).build();
   }
@@ -162,6 +241,8 @@ public class JSONService {
       @PathParam("listName") String listName) throws IOException {
 
     shoppingLists.remove(listName);
+    dbUtil.serializeWriterLists(shoppingLists);
+
     return Response.status(200).entity(mapper.writeValueAsString(shoppingLists)).build();
   }
 }
