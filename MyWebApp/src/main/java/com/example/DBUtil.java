@@ -18,6 +18,7 @@ import java.util.Map;
 public class DBUtil {
 
   private final String DATABASE_FILE = "c:/Users/thayneharmon/Documents/myprojects/MyWebApp/shopping_database.dat";
+  private final String DATABASE_FILE1 = "c:/Users/thayneharmon/Documents/myprojects/MyWebApp/shopping_database1.dat";
 
   public void serializeWriterLists(Map<String, Map<String, Item>> shoppingLists) {
 
@@ -37,6 +38,7 @@ public class DBUtil {
       e.printStackTrace();
     }
   }
+
   public void serializeReadLists(Map<String, Map<String, Item>> lists) {
     Map<String, Map<String, Item>> lists1;
 
@@ -57,6 +59,25 @@ public class DBUtil {
       catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
+    }
+  }
+
+  public void serializeWriterListsAlt(Map<String, Map<String, Item1>> shoppingLists) {
+
+    FileOutputStream fileOutputStream;
+    ObjectOutputStream objectOutputStream;
+
+    try {
+      fileOutputStream = new FileOutputStream(DATABASE_FILE1);
+      objectOutputStream = new ObjectOutputStream(fileOutputStream);
+      objectOutputStream.writeObject(shoppingLists);
+      objectOutputStream.close();
+    }
+    catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }

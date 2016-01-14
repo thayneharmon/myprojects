@@ -9,7 +9,7 @@ import java.util.Date;
  * Object Item
  * Created by thayneharmon on 12/15/2015.
  */
-public class Item implements Serializable{
+public class Item1 implements Serializable{
 
   private String name;
   private Double price;
@@ -17,19 +17,19 @@ public class Item implements Serializable{
   private String date;
   private Integer count;
 
-  public Item(String name) {
+  public Item1(String name) {
     this(name, 0.0);
   }
 
-  public Item(String name, Double price) {
+  public Item1(String name, Double price) {
     this(name, price, "");
   }
 
-  public Item(String name, Double price, String store) {
+  public Item1(String name, Double price, String store) {
     this(name, price, store, 1);
   }
 
-  public Item(String name, Double price, String store, Integer count) {
+  public Item1(String name, Double price, String store, Integer count) {
     this.name = name;
     this.price = price;
     this.store = store;
@@ -71,16 +71,16 @@ public class Item implements Serializable{
     this.date = simpleDateFormat.format(date);
   }
 
+  @Override
+  public String toString() {
+    return "Item [name=" + name + ", price=" + price + ", store=" + store + "]";
+  }
+
   public Integer getCount() {
     return count;
   }
 
   public void setCount(Integer count) {
     this.count = count;
-  }
-
-  @Override
-  public String toString() {
-    return "Item [name=" + name + ", price=" + price + ", store=" + store + "]";
   }
 }

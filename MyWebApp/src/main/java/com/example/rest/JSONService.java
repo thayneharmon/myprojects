@@ -1,6 +1,8 @@
 package com.example.rest;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,6 +23,7 @@ import javax.ws.rs.core.Response;
 
 import com.example.DBUtil;
 import com.example.Item;
+import com.example.Item1;
 import org.codehaus.jackson.map.ObjectMapper;
 
 @Path("/shopping")
@@ -87,14 +90,34 @@ public class JSONService {
   }
 
   /**
-   * search for specific items in a list
-   * @param listName to search
-   * @param item to search for (will find all partial matches)
-   * @return the items found
+   * list a specific item from a specific list
+   * @param listName to use
+   * @param item wanted
+   * @return items contens
    * @throws IOException
    */
   @GET
-  @Path("/lists/{listName}/search")
+  @Path("/lists/{listName}/items/{item}")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response listShoppingList(@PathParam("listName") String listName, @PathParam("item") String item) throws IOException {
+
+    return Response.status(200).entity(mapper.writeValueAsString(shoppingLists.get(listName).get(item))).build();
+  }
+
+  /**
+   * search for
+   * @param listName required wanted
+   * @param item optional item wanted
+   * @param dateStart option start date
+   * @param dateEnd option end date
+   * @param price option price (less than)
+   * @param store option stare
+   * @return items found
+   * @throws IOException
+   */
+  @GET
+  @Path("/lists/{listName}/items")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response searchShoppingList(
@@ -125,7 +148,13 @@ public class JSONService {
         for (Iterator<Item> itemIterator = result.iterator(); itemIterator.hasNext();) {
           Item item_c = itemIterator.next();
           Calendar item_calendar = Calendar.getInstance();
-          item_calendar.setTime(item_c.getDate());
+          SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy/MM/dd");
+          try {
+            item_calendar.setTime(simpleDateFormat.parse(item_c.getDate()));
+          }
+          catch (ParseException e) {
+            e.printStackTrace();
+          }
           int item_day = item_calendar.get(Calendar.DAY_OF_MONTH);
 
           Calendar query_calendar = Calendar.getInstance();
@@ -142,7 +171,13 @@ public class JSONService {
         for (Iterator<Item> itemIterator = result.iterator(); itemIterator.hasNext();) {
           Item item_c = itemIterator.next();
           Calendar item_calendar = Calendar.getInstance();
-          item_calendar.setTime(item_c.getDate());
+          SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy/MM/dd");
+          try {
+            item_calendar.setTime(simpleDateFormat.parse(item_c.getDate()));
+          }
+          catch (ParseException e) {
+            e.printStackTrace();
+          }
           int item_day = item_calendar.get(Calendar.DAY_OF_MONTH);
 
           Calendar query_calendar = Calendar.getInstance();
@@ -177,6 +212,7 @@ public class JSONService {
     return Response.status(200).entity(mapper.writeValueAsString(result)).build();
   }
 
+
   /**
    * add an item to a list
    * @param listName to add to
@@ -192,7 +228,8 @@ public class JSONService {
       @PathParam("listName") String listName,
       @PathParam("newItem") String newItem,
       @QueryParam("price") Double price,
-      @QueryParam("store") String store) throws IOException {
+      @QueryParam("store") String store,
+      @QueryParam("count") Integer count) throws IOException {
 
 
     if (price == null) {
@@ -201,7 +238,10 @@ public class JSONService {
     if (store == null) {
       store ="";
     }
-    shoppingLists.get(listName).put(newItem, new Item(newItem, price, store));
+    if (count == null) {
+      count = 1;
+    }
+    shoppingLists.get(listName).put(newItem, new Item(newItem, price, store, count));
     dbUtil.serializeWriterLists(shoppingLists);
     return Response.status(200).entity(mapper.writeValueAsString(shoppingLists.get(listName))).build();
   }
@@ -214,7 +254,7 @@ public class JSONService {
    * @throws IOException
    */
   @DELETE
-  @Path("/lists/{listName}/items/(item)")
+  @Path("/lists/{listName}/items/{item}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response deleteShoppingListItem(
@@ -244,5 +284,28 @@ public class JSONService {
     dbUtil.serializeWriterLists(shoppingLists);
 
     return Response.status(200).entity(mapper.writeValueAsString(shoppingLists)).build();
+  }
+
+  @POST
+  @Path("/lists/rewritelist")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public void copyOldListToNewList() {
+
+    Map<String, Map<String, Item1>> shoppingListsNew = new HashMap<String, Map<String, Item1>>();
+
+    for (String listName : shoppingLists.keySet()) {
+      Map<String, Item1> newMap = new HashMap<String, Item1>();
+      Map<String, Item> oldMap = new HashMap<String, Item>();
+      oldMap.putAll(shoppingLists.get(listName));
+      for (String itemName : oldMap.keySet()) {
+        Item item = oldMap.get(itemName);
+        Item1 item1 = new Item1(item.getName(),item.getPrice(), item.getStore(), item.getCount());
+        //item1.setDate(item.getDate());
+        newMap.put(item1.getName(), item1);
+      }
+      shoppingListsNew.put(listName, newMap);
+    }
+    dbUtil.serializeWriterListsAlt(shoppingListsNew);
   }
 }
