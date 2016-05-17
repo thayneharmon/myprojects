@@ -16,6 +16,7 @@ public class Item implements Serializable{
   private String store;
   private String date;
   private Integer count;
+  //private String link;
 
   public Item(String name) {
     this(name, 0.0);

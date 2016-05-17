@@ -20,6 +20,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.*;
+import javax.ws.rs.core.UriBuilder;
 
 import com.example.DBUtil;
 import com.example.Item;
@@ -50,7 +52,14 @@ public class JSONService {
   @Produces(MediaType.APPLICATION_JSON)
   public Response listShoppingLists() throws IOException {
 
-    return Response.status(200).entity(mapper.writeValueAsString(shoppingLists)).build();
+    List<String> linkList = new ArrayList<String>();
+
+    for (String list : shoppingLists.keySet()) {
+      String uri = "http://localhost/shopping/lists/" + list;
+      linkList.add(uri);
+    }
+      return Response.status(200).entity(mapper.writeValueAsString(linkList)).build();
+    //return Response.status(200).entity(mapper.writeValueAsString(shoppingLists)).build();
   }
 
   /**
@@ -59,7 +68,7 @@ public class JSONService {
    * @return list
    * @throws IOException
    */
-  @POST
+  @PUT
   @Path("/lists/{newList}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
@@ -220,7 +229,7 @@ public class JSONService {
    * @return resulting list
    * @throws IOException
    */
-  @POST
+  @PUT
   @Path("/lists/{listName}/items/{newItem}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
@@ -286,7 +295,7 @@ public class JSONService {
     return Response.status(200).entity(mapper.writeValueAsString(shoppingLists)).build();
   }
 
-  @POST
+  @PUT
   @Path("/lists/rewritelist")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
