@@ -5,3 +5,6 @@ Apprentice_apps/out/*
 MyWebApp/target
 MyWebApp/.idea
 MyWebApp/shopping_database.dat
+*/.idea
+*/target
+simple-weather/.idea
