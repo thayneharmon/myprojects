@@ -1,0 +1,309 @@
+{
+  "swagger": "2.0",
+  "info" : {
+    "description" : "<h1>MyWebApp Maven Webapp<\/h1>",
+    "version" : "1.0-SNAPSHOT",
+    "title" : "MyWebApp Maven Webapp"
+  },
+  "tags" : [
+    {
+      "name" : "JSONService",
+      "description" : ""
+    }
+  ],
+  "definitions" : {
+  },
+  "paths": {
+    "/shopping/lists" : {
+      "get" : {
+        "tags" : [ "JSONService" ],
+        "description" : "list shopping lists",
+        "operationId" : "resource_JSONService_listShoppingLists_GET",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+        ],
+        "responses" : {
+          "200" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+    ,
+    "/shopping/lists/{listName}/items/{item}" : {
+      "get" : {
+        "tags" : [ "JSONService" ],
+        "description" : "list a specific item from a specific list",
+        "operationId" : "resource_JSONService_listShoppingList_GET",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "item",
+            "in" : "path",
+            "type" : "string",
+            "description" : "wanted"
+          },
+          {
+            "name" : "listName",
+            "in" : "path",
+            "type" : "string",
+            "description" : "to use"
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+      ,
+      "delete" : {
+        "tags" : [ "JSONService" ],
+        "description" : "remove item from a list",
+        "operationId" : "resource_JSONService_deleteShoppingListItem_DELETE",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "item",
+            "in" : "path",
+            "type" : "string",
+            "description" : "to remove"
+          },
+          {
+            "name" : "listName",
+            "in" : "path",
+            "type" : "string",
+            "description" : "to remove from"
+          }
+        ],
+        "responses" : {
+          "201" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+    ,
+    "/shopping/lists/rewritelist" : {
+      "post" : {
+        "tags" : [ "JSONService" ],
+        "description" : "",
+        "operationId" : "resource_JSONService_copyOldListToNewList_POST",
+        "parameters" : [
+        ],
+        "responses" : {
+          "201" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+    ,
+    "/shopping/lists/{listName}" : {
+      "get" : {
+        "tags" : [ "JSONService" ],
+        "description" : "list a specific list",
+        "operationId" : "resource_JSONService_listShoppingList_GET",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "listName",
+            "in" : "path",
+            "type" : "string",
+            "description" : "to list"
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+      ,
+      "delete" : {
+        "tags" : [ "JSONService" ],
+        "description" : "remove the list",
+        "operationId" : "resource_JSONService_deleteShoppingListsList_DELETE",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "listName",
+            "in" : "path",
+            "type" : "string",
+            "description" : "to remove"
+          }
+        ],
+        "responses" : {
+          "201" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+    ,
+    "/shopping/lists/{newList}" : {
+      "post" : {
+        "tags" : [ "JSONService" ],
+        "description" : "create a new list",
+        "operationId" : "resource_JSONService_createAShoppingList_POST",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "newList",
+            "in" : "path",
+            "type" : "string",
+            "description" : "to create"
+          }
+        ],
+        "responses" : {
+          "201" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+    ,
+    "/shopping/lists/{listName}/items/{newItem}" : {
+      "post" : {
+        "tags" : [ "JSONService" ],
+        "description" : "add an item to a list",
+        "operationId" : "resource_JSONService_updateShoppingList_POST",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "listName",
+            "in" : "path",
+            "type" : "string",
+            "description" : "to add to"
+          },
+          {
+            "name" : "newItem",
+            "in" : "path",
+            "type" : "string",
+            "description" : "to add"
+          },
+          {
+            "name" : "count",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "price",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "store",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          }
+        ],
+        "responses" : {
+          "201" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+    ,
+    "/shopping/lists/{listName}/items" : {
+      "get" : {
+        "tags" : [ "JSONService" ],
+        "description" : "search for",
+        "operationId" : "resource_JSONService_searchShoppingList_GET",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "listName",
+            "in" : "path",
+            "type" : "string",
+            "description" : "required wanted"
+          },
+          {
+            "name" : "dateEnd",
+            "in" : "query",
+            "type" : "string",
+            "description" : "option end date"
+          },
+          {
+            "name" : "dateStart",
+            "in" : "query",
+            "type" : "string",
+            "description" : "option start date"
+          },
+          {
+            "name" : "item",
+            "in" : "query",
+            "type" : "string",
+            "description" : "optional item wanted"
+          },
+          {
+            "name" : "price",
+            "in" : "query",
+            "type" : "string",
+            "description" : "option price (less than)"
+          },
+          {
+            "name" : "store",
+            "in" : "query",
+            "type" : "string",
+            "description" : "option stare"
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+  }
+}

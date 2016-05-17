@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>MyWebApp Maven Webapp: JSONService</title>
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!--custom css for these pages-->
+  <link rel="stylesheet" href="css/style.css">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css" type="text/css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body data-spy="scroll" data-target="#apinav">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">MyWebApp Maven Webapp: JSONService</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar" id="apinav">
+        <ul class="nav nav-sidebar">
+          <li><a href="#resource_JSONService_listShoppingLists_GET">GET /shopping/lists</a></li>
+          <li><a href="#resource_JSONService_createAShoppingList_POST">POST /shopping/lists/{newList}</a></li>
+          <li><a href="#resource_JSONService_listShoppingList_GET">GET /shopping/lists/{listName}</a></li>
+          <li><a href="#resource_JSONService_listShoppingList_GET"><abbr title="GET /shopping/lists/{listName}/items/{item}">GET /shopping/lists/{listName}...</abbr></a></li>
+          <li><a href="#resource_JSONService_searchShoppingList_GET"><abbr title="GET /shopping/lists/{listName}/items">GET /shopping/lists/{listName}...</abbr></a></li>
+          <li><a href="#resource_JSONService_updateShoppingList_POST"><abbr title="POST /shopping/lists/{listName}/items/{newItem}">POST /shopping/lists/{listName...</abbr></a></li>
+          <li><a href="#resource_JSONService_deleteShoppingListItem_DELETE"><abbr title="DELETE /shopping/lists/{listName}/items/{item}">DELETE /shopping/lists/{listNa...</abbr></a></li>
+          <li><a href="#resource_JSONService_deleteShoppingListsList_DELETE"><abbr title="DELETE /shopping/lists/{listName}">DELETE /shopping/lists/{listNa...</abbr></a></li>
+          <li><a href="#resource_JSONService_copyOldListToNewList_POST"><abbr title="POST /shopping/lists/rewritelist">POST /shopping/lists/rewriteli...</abbr></a></li>
+          <li class="divider"></li>
+          <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
+        </ul>
+      </div>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <ol class="breadcrumb" id="top">
+          <li class="active dropdown"><a href="index.html">Home</a></li>
+          <li class="active dropdown"><a href="resources.html">Resources</a></li>
+          <li class="dropdown"><a href="resource_JSONService.html">JSONService</a></li>
+        </ol>
+
+      <h1 class="page-header">JSONService <small>Resource</small></h1>
+
+      <p></p>
+
+      <div id="resource_JSONService_listShoppingLists_GET">
+        <h3>GET <small>/shopping/lists <a href="../shopping/lists" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p>list shopping lists</p>
+
+        <table class="table">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server.">application/json</abbr></td>
+            <td>(custom)
+</td>
+            <td rowspan="1" class="multi-row-description">lists</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="resource_JSONService_createAShoppingList_POST">
+        <h3>POST <small>/shopping/lists/{newList} <a href="../shopping/lists/{newList}" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p>create a new list</p>
+
+        <table class="table">
+          <caption>Request Parameters</caption>
+          <thead>
+          <tr>
+            <th>name</th>
+            <th>type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>newList</td>
+            <td>path</td>
+            <td>to create</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server.">application/json</abbr></td>
+            <td>(custom)
+</td>
+            <td rowspan="1" class="multi-row-description">list</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="resource_JSONService_listShoppingList_GET">
+        <h3>GET <small>/shopping/lists/{listName} <a href="../shopping/lists/{listName}" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p>list a specific list</p>
+
+        <table class="table">
+          <caption>Request Parameters</caption>
+          <thead>
+          <tr>
+            <th>name</th>
+            <th>type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>listName</td>
+            <td>path</td>
+            <td>to list</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server.">application/json</abbr></td>
+            <td>(custom)
+</td>
+            <td rowspan="1" class="multi-row-description">the list</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="resource_JSONService_listShoppingList_GET">
+        <h3>GET <small>/shopping/lists/{listName}/items/{item} <a href="../shopping/lists/{listName}/items/{item}" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p>list a specific item from a specific list</p>
+
+        <table class="table">
+          <caption>Request Parameters</caption>
+          <thead>
+          <tr>
+            <th>name</th>
+            <th>type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>item</td>
+            <td>path</td>
+            <td>wanted</td>
+          </tr>
+          <tr>
+            <td>listName</td>
+            <td>path</td>
+            <td>to use</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server.">application/json</abbr></td>
+            <td>(custom)
+</td>
+            <td rowspan="1" class="multi-row-description">items contens</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="resource_JSONService_searchShoppingList_GET">
+        <h3>GET <small>/shopping/lists/{listName}/items <a href="../shopping/lists/{listName}/items" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p>search for</p>
+
+        <table class="table">
+          <caption>Request Parameters</caption>
+          <thead>
+          <tr>
+            <th>name</th>
+            <th>type</th>
+            <th>description</th>
+            <th>constraints</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>listName</td>
+            <td>path</td>
+            <td>required wanted</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>dateEnd</td>
+            <td>query</td>
+            <td>option end date</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>dateStart</td>
+            <td>query</td>
+            <td>option start date</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>item</td>
+            <td>query</td>
+            <td>optional item wanted</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>price</td>
+            <td>query</td>
+            <td>option price (less than)</td>
+            <td>double</td>
+          </tr>
+          <tr>
+            <td>store</td>
+            <td>query</td>
+            <td>option stare</td>
+            <td>&nbsp;</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server.">application/json</abbr></td>
+            <td>(custom)
+</td>
+            <td rowspan="1" class="multi-row-description">items found</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="resource_JSONService_updateShoppingList_POST">
+        <h3>POST <small>/shopping/lists/{listName}/items/{newItem} <a href="../shopping/lists/{listName}/items/{newItem}" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p>add an item to a list</p>
+
+        <table class="table">
+          <caption>Request Parameters</caption>
+          <thead>
+          <tr>
+            <th>name</th>
+            <th>type</th>
+            <th>description</th>
+            <th>constraints</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>listName</td>
+            <td>path</td>
+            <td>to add to</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>newItem</td>
+            <td>path</td>
+            <td>to add</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>count</td>
+            <td>query</td>
+            <td></td>
+            <td>int</td>
+          </tr>
+          <tr>
+            <td>price</td>
+            <td>query</td>
+            <td></td>
+            <td>double</td>
+          </tr>
+          <tr>
+            <td>store</td>
+            <td>query</td>
+            <td></td>
+            <td>&nbsp;</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server.">application/json</abbr></td>
+            <td>(custom)
+</td>
+            <td rowspan="1" class="multi-row-description">resulting list</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="resource_JSONService_deleteShoppingListItem_DELETE">
+        <h3>DELETE <small>/shopping/lists/{listName}/items/{item} <a href="../shopping/lists/{listName}/items/{item}" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p>remove item from a list</p>
+
+        <table class="table">
+          <caption>Request Parameters</caption>
+          <thead>
+          <tr>
+            <th>name</th>
+            <th>type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>item</td>
+            <td>path</td>
+            <td>to remove</td>
+          </tr>
+          <tr>
+            <td>listName</td>
+            <td>path</td>
+            <td>to remove from</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server.">application/json</abbr></td>
+            <td>(custom)
+</td>
+            <td rowspan="1" class="multi-row-description">resulting list</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="resource_JSONService_deleteShoppingListsList_DELETE">
+        <h3>DELETE <small>/shopping/lists/{listName} <a href="../shopping/lists/{listName}" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p>remove the list</p>
+
+        <table class="table">
+          <caption>Request Parameters</caption>
+          <thead>
+          <tr>
+            <th>name</th>
+            <th>type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>listName</td>
+            <td>path</td>
+            <td>to remove</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server.">application/json</abbr></td>
+            <td>(custom)
+</td>
+            <td rowspan="1" class="multi-row-description">resulting lists</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="resource_JSONService_copyOldListToNewList_POST">
+        <h3>POST <small>/shopping/lists/rewritelist <a href="../shopping/lists/rewritelist" class="glyphicon glyphicon-new-window" target="_blank"></a></small></h3>
+
+        <p></p>
+      </div>
+
+        <footer class="footer">
+          <div class="container">
+            <p class="text-muted">Generated by <a href="http://enunciate.webcohesion.com">Enunciate</a>.</p>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript placed at the end of the document so the pages load faster. -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <!-- prettify code blocks. see http://code.google.com/p/google-code-prettify/ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.js" type="text/javascript"></script>
+  <script>
+    $(function() {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });
+
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  </script>
+
+</body>
+</html>

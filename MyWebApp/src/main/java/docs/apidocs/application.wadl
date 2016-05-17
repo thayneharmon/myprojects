@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?enunciate-assumed-base-uri ./?>
+<wadl:application xmlns:wadl="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <wadl:doc xmlns:enunciate="http://enunciate.webcohesion.com/" enunciate:generatedBy="Enunciate-2.0"/>
+  
+  <wadl:grammars>
+  </wadl:grammars>
+
+  <wadl:resources base="./">
+
+    <wadl:resource path="/shopping/lists">
+      <wadl:method name="GET">
+        <wadl:doc><![CDATA[list shopping lists]]></wadl:doc>
+        <wadl:response>
+          <wadl:doc><![CDATA[lists]]></wadl:doc>
+          <wadl:representation mediaType="application/json"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+
+    <wadl:resource path="/shopping/lists/rewritelist">
+      <wadl:method name="POST">
+        <wadl:doc><![CDATA[]]></wadl:doc>
+      </wadl:method>
+    </wadl:resource>
+
+    <wadl:resource path="/shopping/lists/{listName}">
+      <wadl:method name="GET">
+        <wadl:doc><![CDATA[list a specific list]]></wadl:doc>
+        <wadl:request>
+        </wadl:request>
+        <wadl:response>
+          <wadl:doc><![CDATA[the list]]></wadl:doc>
+          <wadl:representation mediaType="application/json"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+
+    <wadl:resource path="/shopping/lists/{listName}">
+      <wadl:method name="DELETE">
+        <wadl:doc><![CDATA[remove the list]]></wadl:doc>
+        <wadl:request>
+        </wadl:request>
+        <wadl:response>
+          <wadl:doc><![CDATA[resulting lists]]></wadl:doc>
+          <wadl:representation mediaType="application/json"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+
+    <wadl:resource path="/shopping/lists/{newList}">
+      <wadl:method name="POST">
+        <wadl:doc><![CDATA[create a new list]]></wadl:doc>
+        <wadl:request>
+        </wadl:request>
+        <wadl:response>
+          <wadl:doc><![CDATA[list]]></wadl:doc>
+          <wadl:representation mediaType="application/json"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+
+    <wadl:resource path="/shopping/lists/{listName}/items">
+      <wadl:method name="GET">
+        <wadl:doc><![CDATA[search for]]></wadl:doc>
+        <wadl:request>
+          <wadl:param name="dateEnd" style="query">
+            <wadl:doc><![CDATA[option end date]]></wadl:doc>
+          </wadl:param>
+          <wadl:param name="dateStart" style="query">
+            <wadl:doc><![CDATA[option start date]]></wadl:doc>
+          </wadl:param>
+          <wadl:param name="item" style="query">
+            <wadl:doc><![CDATA[optional item wanted]]></wadl:doc>
+          </wadl:param>
+          <wadl:param name="price" style="query">
+            <wadl:doc><![CDATA[option price (less than)]]></wadl:doc>
+          </wadl:param>
+          <wadl:param name="store" style="query">
+            <wadl:doc><![CDATA[option stare]]></wadl:doc>
+          </wadl:param>
+        </wadl:request>
+        <wadl:response>
+          <wadl:doc><![CDATA[items found]]></wadl:doc>
+          <wadl:representation mediaType="application/json"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+
+    <wadl:resource path="/shopping/lists/{listName}/items/{item}">
+      <wadl:method name="GET">
+        <wadl:doc><![CDATA[list a specific item from a specific list]]></wadl:doc>
+        <wadl:request>
+        </wadl:request>
+        <wadl:response>
+          <wadl:doc><![CDATA[items contens]]></wadl:doc>
+          <wadl:representation mediaType="application/json"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+
+    <wadl:resource path="/shopping/lists/{listName}/items/{item}">
+      <wadl:method name="DELETE">
+        <wadl:doc><![CDATA[remove item from a list]]></wadl:doc>
+        <wadl:request>
+        </wadl:request>
+        <wadl:response>
+          <wadl:doc><![CDATA[resulting list]]></wadl:doc>
+          <wadl:representation mediaType="application/json"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+
+    <wadl:resource path="/shopping/lists/{listName}/items/{newItem}">
+      <wadl:method name="POST">
+        <wadl:doc><![CDATA[add an item to a list]]></wadl:doc>
+        <wadl:request>
+          <wadl:param name="count" style="query">
+            <wadl:doc><![CDATA[]]></wadl:doc>
+          </wadl:param>
+          <wadl:param name="price" style="query">
+            <wadl:doc><![CDATA[]]></wadl:doc>
+          </wadl:param>
+          <wadl:param name="store" style="query">
+            <wadl:doc><![CDATA[]]></wadl:doc>
+          </wadl:param>
+        </wadl:request>
+        <wadl:response>
+          <wadl:doc><![CDATA[resulting list]]></wadl:doc>
+          <wadl:representation mediaType="application/json"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+  </wadl:resources>
+</wadl:application>
